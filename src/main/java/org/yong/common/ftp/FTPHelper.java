@@ -43,6 +43,24 @@ import org.yong.common.ftp.handler.ErrorHandler;
  *      &lt;version&gt;2.4&lt;/version&gt;
  *  &lt;/dependency&gt;
  * </pre>
+ * <pre>
+ * // <b>示例代码</b>
+ * Builder builder = FTPConfig.createBuilder();
+ * builder
+ *     .setAutoLogin(true)
+ *     .setDefaultDirectory("/")
+ *     .setHost("192.168.0.130")
+ *     .setUserName("admin")
+ *     .setPassword("admin")
+ *     .setTimeout(60*100)
+ *     .setDownloadDir("D:/ftpTest/");
+ * FTPConfig ftpConfig = builder.build();
+ * FTPHelper ftpHelper = new FTPHelper(ftpConfig);
+ * ftpHelper.login();
+ * List&lt;FtpFile&gt; list = ftpHelper.getFiles();
+ * System.out.println(list);
+ * ftpHelper.logout();
+ * </pre>
  * @Date 2016年10月13日 上午11:15:42
  * @Version 0.1
  * @CopyRight
