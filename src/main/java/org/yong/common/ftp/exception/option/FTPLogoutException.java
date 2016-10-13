@@ -1,20 +1,20 @@
 /**
  * @FileName: FTPLogoutException.java
- * @Author Huang.Yong
+ * @author Huang.Yong
  * @Description:
  * @Date 2016年10月13日 上午11:51:49
- * @CopyRight 
+ *  
  */
 package org.yong.common.ftp.exception.option;
 
 import org.yong.common.ftp.exception.FTPOperationException;
 
 /**
- * @Author Huang.Yong
+ * @author Huang.Yong
  * @Description: FTP退出异常
  * @Date 2016年10月13日 上午11:51:49
  * @Version 0.1
- * @CopyRight
+ * 
  */
 public class FTPLogoutException extends FTPOperationException {
 
@@ -22,7 +22,7 @@ public class FTPLogoutException extends FTPOperationException {
     private static final long serialVersionUID = -5071447446849204587L;
 
     /**
-     * @Title: FTPLogoutException
+     * 
      * @Description:
      */
     public FTPLogoutException() {
@@ -31,7 +31,7 @@ public class FTPLogoutException extends FTPOperationException {
     }
 
     /**
-     * @Title: FTPLogoutException
+     * 
      * @Description:
      * @param message
      * @param cause
@@ -42,7 +42,7 @@ public class FTPLogoutException extends FTPOperationException {
     }
 
     /**
-     * @Title: FTPLogoutException
+     * 
      * @Description:
      * @param message
      */
@@ -52,7 +52,7 @@ public class FTPLogoutException extends FTPOperationException {
     }
 
     /**
-     * @Title: FTPLogoutException
+     * 
      * @Description:
      * @param cause
      */

@@ -1,8 +1,8 @@
 /**
  * @FileName: FTPHelper.java
- * @Author Huang.Yong
- * @Description:
- * @Date 2016年10月13日 上午11:15:42
+ * @author Huang.Yong
+ * 
+ * 2016年10月13日 上午11:15:42
  * @CopyRight 
  */
 package org.yong.common.ftp;
@@ -28,43 +28,43 @@ import org.yong.common.ftp.exception.option.FTPUploadFileException;
 import org.yong.common.ftp.handler.ErrorHandler;
 
 /**
- * @Author Huang.Yong
- * @Description: FTP工具, 依赖
- * <pre>
+ * FTP工具, 依赖
+ * 
+ * @author Huang.Yong
+ * 
+ *         <pre>
  *  &lt;dependency&gt;
  *    &lt;groupId&gt;commons-net&lt;/groupId&gt;
  *    &lt;artifactId&gt;commons-net&lt;/artifactId&gt;
  *    &lt;version&gt;3.3&lt;/version&gt;
  *  &lt;/dependency&gt;
- *
+ * 
  *  &lt;dependency&gt;
  *      &lt;groupId&gt;commons-io&lt;/groupId&gt;
  *      &lt;artifactId&gt;commons-io&lt;/artifactId&gt;
  *      &lt;version&gt;2.4&lt;/version&gt;
  *  &lt;/dependency&gt;
  * </pre>
- * <pre>
- * // <b>示例代码</b>
+ * 
+ *         <pre>
+ * // &lt;b&gt;示例代码&lt;/b&gt;
  * Builder builder = FTPConfig.createBuilder();
- * builder
- *     .setAutoLogin(true)
- *     .setDefaultDirectory("/")
- *     .setHost("192.168.0.130")
- *     .setUserName("admin")
- *     .setPassword("admin")
- *     .setTimeout(60*100)
- *     .setDownloadDir("D:/ftpTest/");
+ * builder.setAutoLogin(true).setDefaultDirectory(&quot;/&quot;).setHost(&quot;192.168.0.130&quot;).setUserName(&quot;admin&quot;).setPassword(&quot;admin&quot;)
+ *         .setTimeout(60 * 100).setDownloadDir(&quot;D:/ftpTest/&quot;);
  * FTPConfig ftpConfig = builder.build();
  * FTPHelper ftpHelper = new FTPHelper(ftpConfig);
  * ftpHelper.login();
+ * 
+ * // 通过 FtpHelper API 操作
  * List&lt;FtpFile&gt; list = ftpHelper.getFiles();
  * System.out.println(list);
+ * 
  * ftpHelper.logout();
  * </pre>
- * @Date 2016年10月13日 上午11:15:42
- * @Version 0.1
- * @CopyRight
- * @throws FTPOperationException 所有API在操作失败时会抛出该异常或其子类
+ * 
+ *         2016年10月13日 上午11:15:42 <br>
+ *         FTPOperationException 所有API在操作失败时会抛出该异常或其子类
+ * @version 0.1
  */
 public class FTPHelper {
 
@@ -77,8 +77,6 @@ public class FTPHelper {
     private ErrorHandler errorHandler;
 
     /**
-     * @Title: FTPHelper
-     * @Description:
      * @param ftpConfig 配置对象
      */
     public FTPHelper(FTPConfig ftpConfig) {
@@ -91,12 +89,12 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: connect
-     * @Description: FTP链接
+     * FTP链接
      */
     private void connect() {
         if (null == this.ftpClient) {
             this.ftpClient = new FTPClient();
+            this.ftpClient.setConnectTimeout(this.conf.getTimeout());
         }
 
         try {
@@ -115,8 +113,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: download
-     * @Description: 文件(夹)下载
+     * 文件(夹)下载
+     * 
      * @param ftpFile FTP文件对象
      * @return File 本地文件对象
      */
@@ -128,8 +126,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: downloadDir
-     * @Description: 下载目录
+     * 下载目录
+     * 
      * @param ftpFile 远程目录
      * @return File 本地目录
      */
@@ -141,8 +139,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: downloadFile
-     * @Description: 下载文件
+     * 下载文件
+     * 
      * @param remoteFilePath 远程文件路径
      * @return File 本地文件
      */
@@ -166,8 +164,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: downloadFile
-     * @Description: 文件下载(目录由FTPConfig.setDownloadDir()指定)
+     * 文件下载(目录由FTPConfig.setDownloadDir()指定)
+     * 
      * @param ftpFile 远程文件
      * @return File 本地文件
      */
@@ -176,8 +174,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: setWorkingDirectory
-     * @Description: 设置工作目录
+     * 设置工作目录
+     * 
      * @param dir 远程目录
      * @return boolean true-成功, false-失败
      */
@@ -196,8 +194,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: getWorkingDirectory
-     * @Description: 获取当前工作目录
+     * 获取当前工作目录
+     * 
      * @return String 当前工作目录
      */
     public String getWorkingDirectory() {
@@ -205,8 +203,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: getFiles
-     * @Description: 获取当前目录文件(夹)列表
+     * 获取当前目录文件(夹)列表
+     * 
      * @return List&lt;String&gt; 文件列表
      * @throws IOException
      */
@@ -223,8 +221,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: login
-     * @Description: 登录
+     * 登录
+     * 
      * @return FTPClient
      */
     public boolean login() {
@@ -241,8 +239,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: logout
-     * @Description: 退出登录
+     * 退出登录
+     * 
      * @return boolean
      */
     public boolean logout() {
@@ -258,8 +256,8 @@ public class FTPHelper {
     }
 
     /**
-     * @Title: upload
-     * @Description: 文件上传(当前工作目录)
+     * 文件上传(当前工作目录)
+     * 
      * @param file 目标文件
      */
     public void upload(File file) {

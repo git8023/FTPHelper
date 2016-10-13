@@ -1,20 +1,20 @@
 /**
  * @FileName: FTPQueryException.java
- * @Author Huang.Yong
+ * @author Huang.Yong
  * @Description:
  * @Date 2016年10月13日 下午1:08:52
- * @CopyRight 
+ *  
  */
 package org.yong.common.ftp.exception.option;
 
 import org.yong.common.ftp.exception.FTPOperationException;
 
 /**
- * @Author Huang.Yong
+ * @author Huang.Yong
  * @Description: FTP查询文件异常
  * @Date 2016年10月13日 下午1:08:52
  * @Version 0.1
- * @CopyRight
+ * 
  */
 public class FTPQueryException extends FTPOperationException {
 
@@ -22,7 +22,7 @@ public class FTPQueryException extends FTPOperationException {
     private static final long serialVersionUID = -3217897495581361835L;
 
     /**
-     * @Title: FTPQueryException
+     * 
      * @Description:
      */
     public FTPQueryException() {
@@ -31,7 +31,7 @@ public class FTPQueryException extends FTPOperationException {
     }
 
     /**
-     * @Title: FTPQueryException
+     * 
      * @Description:
      * @param message
      * @param cause
@@ -42,7 +42,7 @@ public class FTPQueryException extends FTPOperationException {
     }
 
     /**
-     * @Title: FTPQueryException
+     * 
      * @Description:
      * @param message
      */
@@ -52,7 +52,7 @@ public class FTPQueryException extends FTPOperationException {
     }
 
     /**
-     * @Title: FTPQueryException
+     * 
      * @Description:
      * @param cause
      */
