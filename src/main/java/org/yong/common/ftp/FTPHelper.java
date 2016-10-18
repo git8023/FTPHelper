@@ -180,9 +180,25 @@ public class FTPHelper {
      * @return boolean true-成功, false-失败
      */
     public boolean setWorkingDirectory(String dir) {
+        return setWorkingDirectory(dir, false);
+    }
+
+    /**
+     * 设置工作目录
+     * 
+     * @param dir 工作目录
+     * @param ensureExist true-不存在时创建, false-不存在时不创建
+     * @return boolean true-成功, false-失败
+     */
+    public boolean setWorkingDirectory(String dir, boolean ensureExist) {
         boolean success = false;
         try {
             success = this.ftpClient.changeWorkingDirectory(dir.trim());
+
+            boolean notExist = !success;
+            if (notExist && ensureExist)
+                success = makeAndSetWorkingDir(dir);
+
             if (success)
                 this.currentDir = dir;
             return success;
@@ -190,6 +206,20 @@ public class FTPHelper {
             handleError(new FTPQueryException("Set remote directory error", e));
             success = false;
         }
+        return success;
+    }
+
+    /**
+     * 创建目录并设置为工作目录
+     * 
+     * @param dir 目录
+     * @return true-执行成功, false-执行失败
+     * @throws IOException
+     */
+    private boolean makeAndSetWorkingDir(String dir) throws IOException {
+        boolean success = this.ftpClient.makeDirectory(dir);
+        if (success)
+            setWorkingDirectory(dir);
         return success;
     }
 

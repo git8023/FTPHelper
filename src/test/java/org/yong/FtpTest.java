@@ -7,6 +7,8 @@
  */
 package org.yong;
 
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.util.List;
 
@@ -55,14 +57,8 @@ public class FtpTest {
     @Test
     public void testFtpHelper() throws Exception {
         Builder builder = FTPConfig.createBuilder();
-        builder
-            .setAutoLogin(true)
-            .setDefaultDirectory("/")
-            .setHost("192.168.0.130")
-            .setUserName("admin")
-            .setPassword("admin")
-            .setTimeout(60*100)
-            .setDownloadDir("D:/");
+        builder.setAutoLogin(true).setDefaultDirectory("/").setHost("192.168.0.130").setUserName("admin").setPassword("admin")
+                .setTimeout(60 * 100).setDownloadDir("D:/");
         FTPConfig ftpConfig = builder.build();
         FTPHelper ftpHelper = new FTPHelper(ftpConfig);
         ftpHelper.login();
@@ -85,7 +81,7 @@ public class FtpTest {
 
         ftpHelper.logout();
     }
-    
+
     @Test
     public void testDownload() throws Exception {
         Builder builder = FTPConfig.createBuilder();
@@ -94,8 +90,8 @@ public class FtpTest {
             .setDefaultDirectory("/")
             .setHost("192.168.0.130")
             .setUserName("admin")
-            .setPassword("admin")
-            .setTimeout(60*100)
+            .setPassword("123456")
+            .setTimeout(60 * 100)
             .setDownloadDir("D:/")
             .setErrorHandler(new ErrorHandler() {
                 public void handle(FTPOperationException e) {
@@ -108,5 +104,27 @@ public class FtpTest {
 
         File file = ftpHelper.downloadFile("/dir/xxx.txt");
         System.out.println(file);
+    }
+
+    @Test
+    public void testSetWorkingDir() throws Exception {
+        Builder builder = FTPConfig.createBuilder();
+        builder
+            .setAutoLogin(true)
+            .setDefaultDirectory("/")
+            .setHost("192.168.0.130")
+            .setUserName("admin")
+            .setPassword("123456")
+            .setTimeout(60 * 100)
+            .setDownloadDir("D:/")
+            .setErrorHandler(new ErrorHandler() {
+                public void handle(FTPOperationException e) {
+                    System.err.println(e);
+                }
+            });
+        FTPHelper ftpHelper = new FTPHelper(builder.build());
+        ftpHelper.login();
+        boolean success = ftpHelper.setWorkingDirectory("/0008/", true);
+        assertTrue(success);
     }
 }
