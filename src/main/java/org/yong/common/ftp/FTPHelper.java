@@ -8,13 +8,14 @@
 package org.yong.common.ftp;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -68,11 +69,11 @@ import org.yong.common.ftp.handler.ErrorHandler;
  */
 public class FTPHelper {
 
-    private FTPConfig conf;
+    private FTPConfig    conf;
 
-    private String currentDir;
+    private String       currentDir;
 
-    private FTPClient ftpClient;
+    private FTPClient    ftpClient;
 
     private ErrorHandler errorHandler;
 
@@ -292,14 +293,16 @@ public class FTPHelper {
      */
     public void upload(File file) {
         String remote = file.getName();
-        OutputStream out = null;
+        InputStream in = null;
         try {
-            out = this.ftpClient.storeFileStream(remote);
-            FileUtils.copyFile(file, out);
+            in = new FileInputStream(file);
+            this.ftpClient.storeFile(remote, in);
+            // out = this.ftpClient.storeFileStream(remote);
+            // FileUtils.copyFile(file, out);
         } catch (Exception e) {
             handleError(new FTPUploadFileException("FTP upload file error.", e));
         } finally {
-            IOUtils.closeQuietly(out);
+            IOUtils.closeQuietly(in);
         }
     }
 
